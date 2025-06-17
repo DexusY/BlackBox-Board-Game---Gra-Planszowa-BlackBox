@@ -1,60 +1,80 @@
-#ENG
-This code implements a simple text-based game in C++ called "Black Box," where the player interacts with a grid-based board. 
-The program utilizes console graphics and cursor manipulation to create a visual representation of the game state. 
-Below is a high-level summary and breakdown:
+<a id="readme-top"></a>
 
-Key Features
-Game State Management:
-The game operates in different states: menu, play, and ended.
-State transitions are handled within a game loop.
 
-Player Interaction:
-The player moves a cursor (Pos structure) on the grid using WASD keys.
-Actions include moving, shooting, placing markers, undoing, and accessing help.
+<br />
+<div align="center">
+  <h1 align="center">Candlestick Charts Generator</h1>
+  <p align="center">
+    A C++ program that generates ASCII candlestick charts from CSV stock data.
+    <br />  
+  </p>
+</div>
 
-Board Representation:
-The Board structure holds a 2D grid to represent game elements.
-Cells can contain atoms (1), player markers (2 or 3), or be empty.
+---
 
-Visuals and Cursor Control:
-Uses Windows-specific console functions (SetConsoleCursorPosition) to manipulate the cursor and draw game elements.
-Draws a grid with borders and corner characters for a polished look.
+## Table of Contents
+- [About The Project](#about-the-project)
+- [Demo](#Demo)
+- [Built With](#built-with)
+- [Prerequisites](#Prerequisites)
+- [Installation](#Installation)
+- [Usage](#Usage)
 
-Gameplay Mechanics:
-Atom Placement: Randomly distributed on the grid.
-Shoot Functionality: Simulates shooting a laser beam along the edges to detect atoms indirectly.
-Undo/Redo: Supports limited history for undoing moves.
 
-Menu System:
-Provides options to start new games with varying grid sizes and atom counts.
+---
 
----------------------------------------------------------------------------------------------------------------------------
-#PL
-Interakcja gracza:
-Gracz porusza kursorem (struktura Pos) na siatce przy użyciu klawiszy WASD 
+## About The Project
 
-Dostępne akcje:
--Ruch kursora
--Strzał (laserem) wzdłuż krawędzi planszy.
--Umieszczanie znaczników (markerów).
--Cofanie akcji (undo).
--Wyświetlanie pomocy.
--Reprezentacja planszy
--Struktura Board przechowuje planszę jako 2D siatkę.
--Każda komórka planszy może zawierać:
--Atom (1).
--Znacznik gracza (2 lub 3).
--Pole puste.
+This project is a simple C++ tool that reads stock data from a CSV file and produces an ASCII candlestick chart. The output chart is saved to `chart.txt`.
 
-Wizualizacje i sterowanie kursorem:
-Gra wykorzystuje funkcje konsolowe systemu Windows, takie jak SetConsoleCursorPosition, do kontrolowania kursora.
-Tworzy wizualną reprezentację planszy z obramowaniem i charakterystycznymi rogami dla lepszego wyglądu.
+Features:
+- Parses CSV files with daily stock prices
+- Displays Open, High, Low, Close prices as ASCII candles
+- Customizable chart size and resolution constants
 
-Mechanika gry:
-Rozmieszczenie atomów: Atomów na planszy jest losowa liczba, ustalana przy rozpoczęciu gry.
-Funkcja strzału: Symuluje strzał laserem z krawędzi planszy, aby pośrednio wykryć atomy.
-Cofanie/ruch wstecz: Obsługuje historię ruchów gracza, umożliwiając cofanie akcji.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-System menu:
-W menu dostępne są opcje, takie jak rozpoczęcie nowej gry z różnymi:
-Rozmiarami planszy, Liczbą atomów.
+---
+## Demo
+
+## Built With
+
+| Language | Description |
+|----------|-------------|
+| 🟦 **C++** | Core programming language for processing CSV files and generating ASCII charts |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+
+
+### Prerequisites
+
+| Requirement | Description |
+|-------------|-------------|
+| **C++ compiler** | Working C++ compiler (e.g. `g++`) |
+| **Terminal** | Command line to compile and run the program |
+| **Programming environment** | Visual Studio Code, CLion, or any other IDE for editing and testing the code |
+| **Stock CSV file** | With the (Date,Open,High,Low,Close) format | 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Installation
+
+Clone the repository and change directory:
+
+```bash
+git clone https://github.com/DexusY/Candlestick-Charts-Generator.git
+cd Candlestick-Charts-Generator
+```
+
+
+Compile the project (example for Wnidows using MinGW):
+
+```bash
+g++ main.cpp -o candlestick
+```
+
+Or open `main.cpp` in your preferred programming environment (e.g., Visual Studio Code) and build/run the program from there
+
+### Usage
