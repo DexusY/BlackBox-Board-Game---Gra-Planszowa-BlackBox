@@ -3,9 +3,9 @@
 
 <br />
 <div align="center">
-  <h1 align="center">Candlestick Charts Generator</h1>
+  <h1 align="center">BlackBox Board Game</h1>
   <p align="center">
-    A C++ program that generates ASCII candlestick charts from CSV stock data.
+    A C++ program that enables you to play the classic Black Box game in the terminal, with real-time keyboard interaction and ASCII-based board rendering.
     <br />  
   </p>
 </div>
