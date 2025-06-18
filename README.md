@@ -44,7 +44,7 @@ The core gameplay mechanics are inspired by the original Black Box board game, w
 - Dynamically draws a board with ASCII characters.
 - Visibility levels (`visability` flag) determine what the player sees.
 ## 3. Input Handling
-- `WASD`, `Q`, `H`, `O`, `spacebar`, etc., control player interaction.
+- `WASD`, `Q`, `H`, `O`, `SPACE`, etc., control player interaction.
 - A custom `Key` enum maps inputs to actions.
 ## 4. Undo/Redo Stack
 - `Pos Undo[DEPTH]` and `Redo[DEPTH]` arrays for undo/redo functionality.
@@ -102,3 +102,37 @@ g++ main.cpp -o
 Or open `main.cpp` in your preferred programming environment (e.g., Visual Studio Code) and build/run the program from there
 
 ### Usage
+After launching the game, you control the cursor and interact with the board using your keyboard. 
+Below are the keyboard controls for the game:
+
+## 1. Controls
+
+| Key | Action |
+|-------------|-------------|
+| `W` `A` `S` `D` | Move cursor (Up, Left, Down, Right) |
+| `SPACE` | Shoot a ray from the edge |
+| `O` | Mark a cell as a suspected atom |
+| `U` | Undo last mark |
+| `R` | Redo previously undone mark |
+| `H` | Show a brief hint (reveal atoms) |
+| `Q` | Return to main menu |
+| `K` | End the current game |
+
+All keys must be followed by `Enter` to take effect.
+
+## 2. Game Objective
+
+Use logic and observation to find all hidden atoms on the board by shooting rays into the grid:
+- `H` - Hit: Ray directly hit an atom
+- `R` - Reflected: Atom nearby deflected the ray
+- `a`, `b`, `c` - Ray passed through from entry to exit
+  
+Mark the suspected atom locations with `o`, and finish the game with `K` when you're confident.
+
+## 3. After Game Symbols Legend
+
+| Symbol | Meaning |
+|-------------|-------------|
+| `*` |	Actual atom (only visible in reveal/help) |
+| `O` |	Correctly marked atom |
+| `X` |	Incorrectly marked cell |
