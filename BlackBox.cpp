@@ -230,7 +230,6 @@ void score(Board* board) {
 //wyrysowanie menu
 void drawMenu() {
     system("CLS");
-    cout << "Jacek Orlowski" << endl;
     cout << "Black Box" << endl;
     cout << "1) nowy poziom (5x5 3 atomow)" << endl;
     cout << "2) nowy poziom (5x5 5 atomow)" << endl;
