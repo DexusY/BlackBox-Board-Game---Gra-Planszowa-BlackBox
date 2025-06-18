@@ -53,6 +53,9 @@ The core gameplay mechanics are inspired by the original Black Box board game, w
 
 ---
 ## Demo
+Short video showing actual gameplay:
+
+https://github.com/user-attachments/assets/661318fa-0bd8-47aa-8a43-141a1142064d
 
 ## Built With
 
