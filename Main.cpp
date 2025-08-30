@@ -55,7 +55,6 @@ struct Board {
     int** guess;
 };
 
-//ustawienie kursora w konsoli na podane kordynaty
 void set_cursor(int x = 0, int y = 0)
 {
     HANDLE handle;
@@ -75,7 +74,6 @@ void set_cursor(Pos pos)
     SetConsoleCursorPosition(handle, coordinates);
 }
 
-//ruszanie kursora
 void movecursor(Pos* player,int size,Key Dir) {
     Pos temp = *player;
 
@@ -97,7 +95,6 @@ void movecursor(Pos* player,int size,Key Dir) {
         break;
     }
 
-    //sprawdzanie czy kursor jest na obszarze planszy
     if (temp.x >= OFFSET_X - 1 && temp.x <= OFFSET_X + size && temp.y >= OFFSET_Y - 1 && temp.y <= OFFSET_Y + size) {
         Pos tab[4] = { {OFFSET_X - 1,OFFSET_Y - 1},{OFFSET_X  + size,OFFSET_Y - 1},{OFFSET_X + size,OFFSET_Y + size},{OFFSET_X - 1,OFFSET_Y + size} };
         if (temp != tab[0] && temp != tab[1] && temp != tab[2] && temp != tab[3]) {
@@ -107,13 +104,11 @@ void movecursor(Pos* player,int size,Key Dir) {
     }
 }
 
-//generowanie losowych pozycji dla bomb
 Pos randomPos(int size) {
     Pos temp = { rand() % size, rand() % size };
     return temp;
 }
 
-//inicjalizacja planszy
 Board* initBoard(int size,int atoms_number) {
     Board* board = new Board;
     board->size = size;
@@ -125,10 +120,10 @@ Board* initBoard(int size,int atoms_number) {
             board->board[i][j] = 0;
         }
     }
-    //losowanie pozycji atomow
+   
     for (int i = 0; i < atoms_number; i++) {
         Pos temp = randomPos(size);
-        if (board->board[temp.x][temp.y] == 1) { //upewnieni sie ze na wylosowanym miejscu niema juz atomu
+        if (board->board[temp.x][temp.y] == 1) {
             do {
                 temp = randomPos(size);
             } while (board->board[temp.x][temp.y] != 0);
@@ -139,7 +134,6 @@ Board* initBoard(int size,int atoms_number) {
     return board;
 }
 
-//wyrysowane planszy
 void drawBoard(Board* board,int visability) {
     int size = board->size;
     for (int x = 0; x < size; x++) {
@@ -173,8 +167,6 @@ void drawBoard(Board* board,int visability) {
         }
     }
 
-    //narysowanie obramowki
-    //narozniki
     set_cursor(OFFSET_X-1, OFFSET_Y-1);
     cout << (char)188;
     set_cursor(OFFSET_X + size, OFFSET_Y-1);
@@ -200,7 +192,6 @@ void drawBoard(Board* board,int visability) {
     set_cursor(OFFSET_X + size, OFFSET_Y + size+1);
     cout << (char)188;
 
-    //linie
     for (int i = 0; i < size; i++) {
         set_cursor(OFFSET_X +i, OFFSET_Y - 2);
         cout << (char)205;
@@ -227,7 +218,6 @@ void score(Board* board) {
     cout << "Liczba znalezionych atomow = " << score;
 }
 
-//wyrysowanie menu
 void drawMenu() {
     system("CLS");
     cout << "Black Box" << endl;
@@ -243,7 +233,7 @@ void drawMenu() {
 Key detect() {
     char temp = _getch();
     char ch = temp;
-    while (temp != 13) //sprawdzanie dopuki nie enter
+    while (temp != 13) 
     {
         ch = temp;
         temp = _getch();
@@ -288,21 +278,21 @@ void shoot(Pos* player, Board* board,bool visability,char* sign) {
     Pos current = { player->x - OFFSET_X , player->y -OFFSET_Y};
     Pos curPos = current;
     Pos nextPos;
-    Pos vec[4] = { {0,-1},{1,0},{0,1},{-1,0} }; // wektory o jakie przesuwamy
+    Pos vec[4] = { {0,-1},{1,0},{0,1},{-1,0} }; 
     int dir;
-    // sprawdzenie czy znajdujemy sie na scianie
+    
     if (player->x == OFFSET_X - 1 || player->x == OFFSET_X + board->size || player->y == OFFSET_Y-1 || player->y == OFFSET_Y+board->size) {
         if (current.x == -1) {
-            dir = 1; //prawo
+            dir = 1; 
         }
         else if(current.x == board->size) {
-            dir = 3; // lewo
+            dir = 3; 
         }
         else if (current.y == -1) {
-            dir = 2; // dol
+            dir = 2; 
         }
         else if (current.y == board->size) {
-            dir = 0; //gora
+            dir = 0; 
         }
         
         curPos += vec[dir];
@@ -406,7 +396,7 @@ void shoot(Pos* player, Board* board,bool visability,char* sign) {
 
 
         while (!(curPos.x <= -1 || curPos.y <= -1 || curPos.x >= board->size || curPos.y >= board->size)) {
-            //sprawdzenie czy przed jest atom
+           
             if (nextPos.x != board->size && nextPos.y != board->size && nextPos.x != -1 && nextPos.y != -1 && board->board[nextPos.x][nextPos.y] == 1) {
                 set_cursor(player->x, player->y);
                 if (visability) {
@@ -503,11 +493,11 @@ void shoot(Pos* player, Board* board,bool visability,char* sign) {
         set_cursor(curPos.x + OFFSET_X, curPos.y + OFFSET_Y);
         if (visability) {
             cout << *sign;
-            //*sign++;
+         
         }
         else {
             cout << " ";
-            //*sign--;
+        
         }
         set_cursor(player->x, player->y);
         if (visability) {
@@ -587,7 +577,6 @@ int main() {
             case Key::help:
                 drawBoard(board, true);
                 Sleep(HELP_TIME);
-                //system("cls");
                 drawBoard(board, false);
                 set_cursor(player);
                 break;
